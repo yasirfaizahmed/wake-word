@@ -1,5 +1,5 @@
 
-
+[![wakatime](https://wakatime.com/badge/user/a9e00d41-03d8-4310-b678-7bcc046966dc/project/92fd1c78-5e08-4909-9fc4-539480f23b99.svg)](https://wakatime.com/badge/user/a9e00d41-03d8-4310-b678-7bcc046966dc/project/92fd1c78-5e08-4909-9fc4-539480f23b99)
 
 
 ##  Wake Word Audio Recorder
