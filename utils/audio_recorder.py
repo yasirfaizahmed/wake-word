@@ -1,5 +1,5 @@
 import invoke
-from utils.config import *
+from ww_config.config import *
 import argparse
 import time
 
