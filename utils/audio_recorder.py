@@ -31,5 +31,5 @@ if __name__ == "__main__":
       invoke.run(cmd, echo=True)
       print("Sleeping for 5 seconds ...")
       time.sleep(5)
-    
+
     print("\n Recording complete.")

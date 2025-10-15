@@ -1,18 +1,6 @@
-import pathlib as p
-
-
 # ---------- CONFIG ----------
-WAKE = "wake"
-NON_WAKE = "non-wake"
-WAKE_AUGMENTED = "wake-augmented"
-
-PROJECT_PATH = p.Path(__file__).parent.parent
-RECORDINGS_PATH = p.Path.joinpath(PROJECT_PATH, ".data")
-WAKE_DIR = p.Path.joinpath(RECORDINGS_PATH, WAKE)
-WAKE_CHOPPED = p.Path.joinpath(RECORDINGS_PATH, "wake-chopped")
-WAKE_AUGMENTED_DIR = p.Path.joinpath(RECORDINGS_PATH, WAKE_AUGMENTED)
-NON_WAKE_DIR = p.Path.joinpath(RECORDINGS_PATH, NON_WAKE)
-NON_WAKE_CHOPPED_DIR = p.Path.joinpath(RECORDINGS_PATH, "non-wake-chopped")
+NOISE_HF_DATASET = "kdcyberdude/background_noise"
+ZIP_FILE_NAME = "esc-50.zip"
 
 SAMPLE_RATE = 16000   # per second
 NUM_RECORDINGS = 3

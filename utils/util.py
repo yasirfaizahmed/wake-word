@@ -1,3 +1,6 @@
+from ww_config.paths import *
+
+
 # ######### Handy class to convert a dict to a object for config purpose
 class ArgDict:
   def __init__(self, data: dict):
@@ -5,7 +8,7 @@ class ArgDict:
       setattr(self, key, value)
 
   def __getattribute__(self, name):
-    return getattr(self, name)    
+    return getattr(self, name)
 
 
 def create_dataset_dirs():

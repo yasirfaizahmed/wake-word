@@ -1,15 +1,25 @@
-import librosa, numpy as np
-import pathlib as p
-from matplotlib import pyplot as plt
-import soundfile as sf
-from ww_config.config import *
-import random
-from scipy.signal import fftconvolve
-import librosa.display
-import os
+from ww_config.config import *    # noqa
+import librosa.display    # noqa
 import torch
 
 from schemas import ModelInitializerConfig
+from utils.patterns import Singleton
+
+
+class ModelInitializer(metaclass=Singleton):
+  def __init__(self, config: ModelInitializerConfig):
+    self.config: ModelInitializerConfig = config
+
+  def initialize(self):
+    self.model = WakeWord(input_size=self.config.wakeword_config.input_size,
+                          hidden_size=self.config.wakeword_config.hidden_size,
+                          output_size=self.config.wakeword_config.output_size)
+    self.dataloader = torch.utils.data.DataLoader(dataset=self.config.dataloader_config.data,
+                                                  batch_size=self.config.dataloader_config.batch_size,
+                                                  num_workers=self.config.dataloader_config.num_workers)
+    self.optimizer = torch.optim.Adam(params=self.model.parameters(),
+                                      lr=self.config.optimizer_config.lr)
+    self.criterion = self.config.criterion_config.loss_function()
 
 
 # ########## Model architecture
@@ -23,40 +33,3 @@ class WakeWord(torch.nn.Module):
     lstm_output, _ = self.lstm(input_data)
     output = torch.nn.functional.sigmoid(self.fc1(lstm_output[:, -1, :]))
     return output
-
-
-class ModelInitializer():
-  def __init__(self, config: ModelInitializerConfig):
-    self.config: ModelInitializerConfig = config
-
-  def build(self):
-    self.model = WakeWord(input_size=self.config.wakeword_config.input_size,
-                          hidden_size=self.config.wakeword_config.hidden_size,
-                          output_size=self.config.wakeword_config.output_size)
-    self.dataloader = torch.utils.data.DataLoader(dataset=self.config.dataloader_config.data,
-                                                  batch_size=self.config.dataloader_config.batch_size,
-                                                  num_workers=self.config.dataloader_config.num_workers)
-    self.optimizer = torch.optim.Adam(params=self.model.parameters(),
-                                      lr=self.config.optimizer_config.lr)
-    self.criterion = self.config.criterion_config.loss_function()
-
-
-def train():
-  epochs = 25
-  loss_per_epoch = []
-
-  for epoch in range(epochs):
-    train_loss_per_batch = 0
-    model.train()
-    for batch_count, (input_data, labels) in enumerate(dataloader):
-      optimizer.zero_grad()
-      outputs = model(input_data)
-
-      loss = criterion(outputs, labels.view(-1, 1).float())
-      loss.backward()
-      optimizer.step()
-      train_loss_per_batch += loss.item()
-    loss_per_epoch.append(train_loss_per_batch/batch_count)
-    print(f"Training loss per epoch: {train_loss_per_batch/batch_count}")
-
-
