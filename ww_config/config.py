@@ -6,7 +6,6 @@ SAMPLE_RATE = 16000   # per second
 NUM_RECORDINGS = 3
 HARDWARE = "0,0"
 DURATION = 2        # seconds
-SAMPLE_RATE = 44100
 N_MFCC = 20        # number of features for MFCC to capture
 N_AUG_PER_FILE = 30     # how many augmented variants per original
 # librosa default hop_len = 512, and with sr=16000 frame_rate = 16000/512 ~= 31
