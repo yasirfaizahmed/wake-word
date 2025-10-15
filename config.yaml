@@ -1,0 +1,20 @@
+wakeword:
+  value: Hey Jarvis    # your custom wake word
+  negative_wake_words: [Hey Charlie, Hey Jervis, Hey Jordis, Hey Jardis, Hey Jorvis, Hey Darvis, Hey Harvis, Hey Travis, Hey Jar this, Hey Jar dish,Hey service, Hey nervous, Hey Harvey, Hey Jar please, Hey Jar was, Hey Gerald, Hey George is, Hey Janice, Hey Jared, Hey Jules]
+  negative_wake_words_multiplier : 5    # 5 negative words will be syntesized for each negative wake word
+
+model: 
+  name: wakeword
+  input_size: 20
+  output_size: 1
+
+dataloader:
+  batch_size: 10
+  num_workers: 1
+
+optimizer:
+  type: Adam
+  lr: 0.001
+
+criterion:
+  type: BCELoss

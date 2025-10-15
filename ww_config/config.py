@@ -1,4 +1,6 @@
 # ---------- CONFIG ----------
+WAKE_WORD = "hey jarvis"    # your custom wake word
+
 NOISE_HF_DATASET = "kdcyberdude/background_noise"
 ZIP_FILE_NAME = "esc-50.zip"
 
@@ -11,3 +13,5 @@ N_AUG_PER_FILE = 30     # how many augmented variants per original
 # librosa default hop_len = 512, and with sr=16000 frame_rate = 16000/512 ~= 31
 # and since our duration of each audio file is 2 seconds, hence MAX_LEN = 2 * 31 ~ 64
 MAX_LEN = 64
+
+PROJECT_ABBR = "WW"

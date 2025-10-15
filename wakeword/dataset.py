@@ -60,3 +60,6 @@ class DatasetBuilder():
         pbar.update(1)
 
     return torch.tensor(noise_data, dtype=torch.float32)
+
+  def generate_negative_wake_words(self) -> torch.Tensor:
+    pass
