@@ -20,7 +20,7 @@ def get_text(text, hps):
 
 
 class Synthesizer():
-  def __init__(self):
+  def __init__(self, ):
     pass
 
   def synthesize(self):
