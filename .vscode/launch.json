@@ -16,7 +16,7 @@
             "program": "${file}",
             "console": "integratedTerminal",
             "env": {
-                "PYTHONPATH": "${workspaceFolder}"
+                "PYTHONPATH": "${workspaceFolder}:${workspaceFolder}/vits:${workspaceFolder}/vits/monotonic_align"
             }
         }
     ]
