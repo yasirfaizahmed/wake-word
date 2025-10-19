@@ -13,10 +13,13 @@ WAKE_CHOPPED = p.Path.joinpath(DATA_DIR, "wake-chopped")
 WAKE_AUGMENTED_DIR = p.Path.joinpath(DATA_DIR, WAKE_AUGMENTED)
 NON_WAKE_DIR = p.Path.joinpath(DATA_DIR, NON_WAKE)
 NON_WAKE_CHOPPED_DIR = p.Path.joinpath(DATA_DIR, "non-wake-chopped")
-NOISE_DATA_DIR = p.Path.joinpath(DATA_DIR, NOISE)
 
 CONFIG_YAML_DIR = PROJECT_PATH
 CONFIG_FILE = CONFIG_YAML_DIR.joinpath("config.yaml")
 
 SYNTHESIZED_DIR = p.Path.joinpath(DATA_DIR, "synthesized")
 SYNTHESIZED_WW_DIR = p.Path.joinpath(SYNTHESIZED_DIR, WAKE)
+
+SYNTHESIZED_SIMILAR_SOUNDING_DIR = p.Path.joinpath(SYNTHESIZED_DIR, NON_WAKE)
+
+NOISE_DATA_DIR = p.Path.joinpath(DATA_DIR, NOISE)

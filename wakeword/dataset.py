@@ -26,16 +26,6 @@ class DatasetBuilder():
 
     NOISE_DATA_DIR.mkdir(parents=True, exist_ok=True)
 
-  def pull_noise_from_HF(self) -> p.Path:
-    # Example: download a single file from a repo
-    file_path = hf_hub_download(repo_id=NOISE_HF_DATASET,   # repo name
-                                filename=ZIP_FILE_NAME,   # File name in repo
-                                repo_type="dataset")
-
-    with zipfile.ZipFile(file_path, 'r') as zip_ref:
-      zip_ref.extractall(NOISE_DATA_DIR)
-    return NOISE_DATA_DIR
-
   def generate_noise(self) -> torch.Tensor:
     noise_data = []
     noise_data_dir: p.Path = self.pull_noise_from_HF()

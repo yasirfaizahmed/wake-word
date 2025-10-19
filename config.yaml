@@ -1,6 +1,6 @@
 wakeword:
   value: Hey Jarvis
-  negative_wake_words:
+  similar_sounding_wake_words:
     - Hey Charlie
     - Hey Jervis
     - Hey Jordis
@@ -21,21 +21,38 @@ wakeword:
     - Hey Janice
     - Hey Jared
     - Hey Jules
-  negative_wake_words_multiplier: 5
+    - Hey Barley
+  similar_sounding_wake_words_multiplier: 9
+
+
 synthesizer:
   pre_trained_model_hf_repo: yasirfaizahmed/vits_pretrained_vctk
   pre_trained_model: pretrained_vctk.pth
-  wake_word_sample_count: 100
-  non_wake_word_sample_count: 1000
+  inferred_wake_word_sample_count: 25    # 100 or 25 only
+  total_wake_word_count: 300
+
+  noise_dataset_hf_repo: kdcyberdude/background_noise
+  noise_dataset_file: esc-50.zip
+  non_wake_word_sample_count: 500    # max 1500
+  vocal_duration: 1.3   # seconds
+  total_duration: 2   # seconds
+
+
 model:
   name: wakeword
   input_size: 20
   output_size: 1
+
+
 dataloader:
   batch_size: 10
   num_workers: 1
+
+
 optimizer:
   type: Adam
   lr: 0.001
+
+
 criterion:
   type: BCELoss
