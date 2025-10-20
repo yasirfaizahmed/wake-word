@@ -13,8 +13,8 @@ class ArgDict:
 
 def create_dataset_dirs():
   # some dir creations
-  if not RECORDINGS_PATH.exists():
-    RECORDINGS_PATH.mkdir(parents=True, exist_ok=True)
+  if not DATA_DIR.exists():
+    DATA_DIR.mkdir(parents=True, exist_ok=True)
   WAKE_DIR.mkdir(parents=True, exist_ok=True)
   WAKE_CHOPPED.mkdir(parents=True, exist_ok=True)
   WAKE_AUGMENTED_DIR.mkdir(parents=True, exist_ok=True)
