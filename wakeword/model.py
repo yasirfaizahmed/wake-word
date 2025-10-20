@@ -3,7 +3,7 @@ import librosa.display    # noqa
 import torch
 
 from schemas import ModelInitializerConfig
-from utils.patterns import Singleton
+from ww_utils.patterns import Singleton
 
 
 class ModelInitializer(metaclass=Singleton):

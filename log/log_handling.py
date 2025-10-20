@@ -4,7 +4,7 @@ from logging import handlers
 import time
 from datetime import date
 
-from utils.patterns import Singleton
+from ww_utils.patterns import Singleton
 from ww_config.paths import *
 from ww_config.config import *
 

@@ -11,12 +11,13 @@
                 "wake",
                 "--count", "1"
             ],
+            "justMyCode": false,
             "type": "debugpy",
             "request": "launch",
             "program": "${file}",
             "console": "integratedTerminal",
             "env": {
-                "PYTHONPATH": "${workspaceFolder}:${workspaceFolder}/vits:${workspaceFolder}/vits/monotonic_align"
+                "PYTHONPATH": "${workspaceFolder}${workspaceFolder}/vits"
             }
         }
     ]

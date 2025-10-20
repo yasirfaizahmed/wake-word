@@ -21,6 +21,11 @@ from ww_config.config import *
 from ww_config.paths import *
 from base.base import BaseClass
 
+import logging
+logging.getLogger("vits").setLevel(logging.CRITICAL)
+logging.getLogger("vits.utils").setLevel(logging.CRITICAL)
+logging.getLogger("root").setLevel(logging.CRITICAL)
+
 
 class Synthesizer(BaseClass):
   def __init__(self):
@@ -28,6 +33,7 @@ class Synthesizer(BaseClass):
 
     SYNTHESIZED_DIR.mkdir(exist_ok=True)
     SYNTHESIZED_WW_DIR.mkdir(exist_ok=True)
+    SYNTHESIZED_SIMILAR_SOUNDING_DIR.mkdir(exist_ok=True)
 
     self.pull_pretrained_model_from_HF()
     self.pull_noise_dataset_from_HF()
@@ -96,21 +102,21 @@ class Synthesizer(BaseClass):
           pbar.update(1)
 
   def synthesize_nww(self):
-    count = len(self.config.wakeword.similar_sounding_wake_words) * self.config.wakeword.negative_wake_words_multiplier
+    count = len(self.config.wakeword.similar_sounding_wake_words) * self.config.wakeword.similar_sounding_wake_words_multiplier
     with tqdm(total=count,
               desc=f"Synthesizing {count} similar sounding wake word samples") as pbar:
+      self.logger.info(f"Saving synthesized similar sounding wakeword samples at {SYNTHESIZED_SIMILAR_SOUNDING_DIR}")
       for similar_sounding_word in self.config.wakeword.similar_sounding_wake_words:
-        incrementer = 0.3 if self.config.wakeword.similar_sounding_wake_words_multiplier == 9 else 0.1:
+        incrementer = 0.3 if self.config.wakeword.similar_sounding_wake_words_multiplier == 9 else 0.1
         for noise_scale in np.arange(0.1, 1.0, incrementer):
           for noise_scale_w in np.arange(0.1, 1.0, incrementer):
             audio, hps = self.infer(text=similar_sounding_word, noise_scale=noise_scale, noise_scale_w=noise_scale_w)
 
-            file_path = f"{SYNTHESIZED_SIMILAR_SOUNDING_DIR}/vits_ssww_{noise_scale:.2f}_{noise_scale_w:.2f}.wav"
+            file_path = f"{SYNTHESIZED_SIMILAR_SOUNDING_DIR}/vits_ssww_{similar_sounding_word}_{noise_scale:.2f}_{noise_scale_w:.2f}.wav"
             sf.write(file_path, audio, hps.data.sampling_rate)
 
             pbar.update(1)
 
 
 if __name__ == "__main__":
-
-  Synthesizer().synthesize_ww()
+  Synthesizer().synthesize_nww()

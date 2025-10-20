@@ -2,10 +2,8 @@ wakeword:
   value: Hey Jarvis
   similar_sounding_wake_words:
     - Hey Charlie
-    - Hey Jervis
     - Hey Jordis
     - Hey Jardis
-    - Hey Jorvis
     - Hey Darvis
     - Hey Harvis
     - Hey Travis
